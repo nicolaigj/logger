@@ -1,31 +1,39 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <loggerMenu></loggerMenu>
+    <router-view class="component"/>
   </div>
 </template>
 
+<script>
+import LoggerMenu from '@/components/LoggerMenu.vue'
+export default {
+  components: {
+    LoggerMenu
+  }
+}
+</script>
+
 <style>
+:root {
+  --orange: #FF9756;
+  --grey: #525252;
+  --blue: #56ABFF;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  color: #525252;
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 1000px) 1fr;
+  grid-template-areas: "left-gutter content right-gutter";
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.component {
+  grid-area: content;
+  grid-row: 2;
 }
 </style>

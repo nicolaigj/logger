@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <logger-input></logger-input>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import LoggerInput from '@/components/LoggerInput.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    LoggerInput
   }
 }
 </script>
+
+<style scoped>
+.home {
+  display: grid;
+  grid-template-columns: 1fr minmax(200px, 500px) 1fr;
+  grid-template-areas:
+    "gutter-left content gutter-right";
+  padding-top: 30px;
+  grid-gap: 5px;
+}
+</style>
