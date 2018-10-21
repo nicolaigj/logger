@@ -3,13 +3,13 @@
     <h1 class="logo">Logger</h1>
     <img src="@/assets/menu_icon.svg"
     class="navbar__menu-icon"
-    aria-expanded="false"
+    :aria-expanded="menuExpanded"
     aria-controls="menu-list"
-    @click="expandMenu($event)">
+    @click="toggleMenu()">
     <div class="navitems">
-      <router-link class="navitem" :to="{name: 'Home'}">Home</router-link>
-      <router-link class="navitem" :to="{name: 'About'}">About</router-link>
-      <router-link class="navitem" :to="{name: 'Login'}">Log in</router-link>
+      <router-link class="navitem" @click="toggleMenu()" :to="{name: 'Home'}">Home</router-link>
+      <router-link class="navitem" @click="toggleMenu()" :to="{name: 'About'}">About</router-link>
+      <router-link class="navitem" @click="toggleMenu()" :to="{name: 'Login'}">Log in</router-link>
     </div>
   </div>
 </template>
@@ -17,10 +17,14 @@
 <script>
 export default {
   name: 'LoggerMenu',
+  data: function () {
+    return {
+      menuExpanded: false
+    }
+  },
   methods: {
-    expandMenu: function ({ target }) {
-      const expanded = target.getAttribute('aria-expanded') === 'true' || false
-      target.setAttribute('aria-expanded', !expanded)
+    toggleMenu: function () {
+      this.menuExpanded = !this.menuExpanded
     }
   }
 }

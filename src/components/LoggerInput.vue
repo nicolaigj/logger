@@ -1,13 +1,30 @@
 <template>
   <div class="logger-input">
-    <textarea type="text" class="log-input"></textarea>
-    <button class="btn btn-submit-log">Log</button>
+    <textarea type="text" class="log-input" v-model="message" @keydown.enter="logMessage($event, messageLength)"></textarea>
+    <button class="btn btn-submit-log" @click="logMessage($event, messageLength)">Log</button>
+    <p>{{ messageLength }} / 160</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'LoggerInput'
+  name: 'LoggerInput',
+  data: function () {
+    return {
+      message: ''
+    }
+  },
+  computed: {
+    messageLength: function () {
+      return this.message.length
+    }
+  },
+  methods: {
+    logMessage: function (event, message) {
+      event.preventDefault()
+      console.log(message)
+    }
+  }
 }
 </script>
 
